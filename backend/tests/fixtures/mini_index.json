@@ -1,0 +1,328 @@
+{
+ "extractor_version": "1",
+ "documents": [
+  {
+   "doc_id": "sbc-demo",
+   "filename": "sbc-demo.pdf",
+   "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+   "page_sizes": [
+    [
+     792.0,
+     612.0
+    ],
+    [
+     792.0,
+     612.0
+    ]
+   ]
+  },
+  {
+   "doc_id": "denial-demo",
+   "filename": "denial-demo.pdf",
+   "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+   "page_sizes": [
+    [
+     612.0,
+     792.0
+    ]
+   ]
+  }
+ ],
+ "clauses": [
+  {
+   "clause_id": "sbc-demo#p1.1",
+   "doc_id": "sbc-demo",
+   "page": 1,
+   "bbox": [
+    72.0,
+    72,
+    540.0,
+    84
+   ],
+   "text": "What is the overall deductible? $1,500 individual / $3,000 family",
+   "lines": [
+    {
+     "bbox": [
+      72.0,
+      72,
+      540.0,
+      84
+     ],
+     "start": 0,
+     "end": 65
+    }
+   ],
+   "kind": "paragraph"
+  },
+  {
+   "clause_id": "sbc-demo#p1.2",
+   "doc_id": "sbc-demo",
+   "page": 1,
+   "bbox": [
+    72.0,
+    100,
+    540.0,
+    112
+   ],
+   "text": "Specialist visit — $80.50 copay after the deductible",
+   "lines": [
+    {
+     "bbox": [
+      72.0,
+      100,
+      540.0,
+      112
+     ],
+     "start": 0,
+     "end": 52
+    }
+   ],
+   "kind": "paragraph"
+  },
+  {
+   "clause_id": "sbc-demo#p1.3",
+   "doc_id": "sbc-demo",
+   "page": 1,
+   "bbox": [
+    72.0,
+    130,
+    540.0,
+    156
+   ],
+   "text": "Beneﬁts are not covered for cosmetic surgery or ser-\nvices related to it.",
+   "lines": [
+    {
+     "bbox": [
+      72.0,
+      130,
+      540.0,
+      142
+     ],
+     "start": 0,
+     "end": 52
+    },
+    {
+     "bbox": [
+      72.0,
+      144,
+      540.0,
+      156
+     ],
+     "start": 53,
+     "end": 73
+    }
+   ],
+   "kind": "paragraph"
+  },
+  {
+   "clause_id": "sbc-demo#p2.1",
+   "doc_id": "sbc-demo",
+   "page": 2,
+   "bbox": [
+    36.0,
+    98,
+    630.0,
+    122
+   ],
+   "text": "Primary care visit to treat an injury or illness | $40 Copay / visit; deductible does not apply | Not covered",
+   "lines": [
+    {
+     "bbox": [
+      36.0,
+      98,
+      230.0,
+      122
+     ],
+     "start": 0,
+     "end": 48
+    },
+    {
+     "bbox": [
+      236.0,
+      98,
+      430.0,
+      122
+     ],
+     "start": 51,
+     "end": 95
+    },
+    {
+     "bbox": [
+      436.0,
+      98,
+      630.0,
+      122
+     ],
+     "start": 98,
+     "end": 109
+    }
+   ],
+   "kind": "table_row"
+  },
+  {
+   "clause_id": "sbc-demo#p2.2",
+   "doc_id": "sbc-demo",
+   "page": 2,
+   "bbox": [
+    72.0,
+    160,
+    540.0,
+    200
+   ],
+   "text": "Prior authorization is required for out-\npatient surgery. If you don’t get prior au-\nthorization, benefits will be reduced by 50%.",
+   "lines": [
+    {
+     "bbox": [
+      72.0,
+      160,
+      540.0,
+      172
+     ],
+     "start": 0,
+     "end": 40
+    },
+    {
+     "bbox": [
+      72.0,
+      174,
+      540.0,
+      186
+     ],
+     "start": 41,
+     "end": 84
+    },
+    {
+     "bbox": [
+      72.0,
+      188,
+      540.0,
+      200
+     ],
+     "start": 85,
+     "end": 130
+    }
+   ],
+   "kind": "paragraph"
+  },
+  {
+   "clause_id": "sbc-demo#p2.3",
+   "doc_id": "sbc-demo",
+   "page": 2,
+   "bbox": [
+    72.0,
+    220,
+    540.0,
+    232
+   ],
+   "text": "Not covered",
+   "lines": [
+    {
+     "bbox": [
+      72.0,
+      220,
+      540.0,
+      232
+     ],
+     "start": 0,
+     "end": 11
+    }
+   ],
+   "kind": "paragraph"
+  },
+  {
+   "clause_id": "sbc-demo#p2.4",
+   "doc_id": "sbc-demo",
+   "page": 2,
+   "bbox": [
+    72.0,
+    240,
+    540.0,
+    252
+   ],
+   "text": "Coinsurance for imaging is 20% after you meet the deductible.",
+   "lines": [
+    {
+     "bbox": [
+      72.0,
+      240,
+      540.0,
+      252
+     ],
+     "start": 0,
+     "end": 61
+    }
+   ],
+   "kind": "paragraph"
+  },
+  {
+   "clause_id": "denial-demo#p1.1",
+   "doc_id": "denial-demo",
+   "page": 1,
+   "bbox": [
+    72.0,
+    100,
+    540.0,
+    126
+   ],
+   "text": "We have denied your claim because the service is not covered\nunder your plan.",
+   "lines": [
+    {
+     "bbox": [
+      72.0,
+      100,
+      540.0,
+      112
+     ],
+     "start": 0,
+     "end": 60
+    },
+    {
+     "bbox": [
+      72.0,
+      114,
+      540.0,
+      126
+     ],
+     "start": 61,
+     "end": 77
+    }
+   ],
+   "kind": "paragraph"
+  },
+  {
+   "clause_id": "denial-demo#p1.2",
+   "doc_id": "denial-demo",
+   "page": 1,
+   "bbox": [
+    72.0,
+    140,
+    540.0,
+    166
+   ],
+   "text": "You may ap­peal within  180 calendar days of the date\nof this notice.",
+   "lines": [
+    {
+     "bbox": [
+      72.0,
+      140,
+      540.0,
+      152
+     ],
+     "start": 0,
+     "end": 53
+    },
+    {
+     "bbox": [
+      72.0,
+      154,
+      540.0,
+      166
+     ],
+     "start": 54,
+     "end": 69
+    }
+   ],
+   "kind": "paragraph"
+  }
+ ]
+}

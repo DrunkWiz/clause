@@ -1,0 +1,2 @@
+# PDF text and layout extraction. The only runtime dependency; imported only by clause/index/extract.py.
+pdfplumber==0.11.10
