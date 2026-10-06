@@ -46,7 +46,7 @@ def main() -> None:
             idx.add_document(doc, clauses)
             out = Path(args.out) / f"{doc.doc_id}.json"
             out.parent.mkdir(parents=True, exist_ok=True)
-            out.write_text(idx.to_json(), encoding="utf-8")
+            out.write_text(idx.to_json(), encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":

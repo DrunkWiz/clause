@@ -36,7 +36,7 @@ def fetch() -> None:
 
 def build() -> None:
     idx = build_regs_index(RAW)
-    OUT.write_text(idx.to_json(indent=1), encoding="utf-8")
+    OUT.write_text(idx.to_json(indent=1), encoding="utf-8", newline="\n")
     for doc in idx.documents.values():
         n = sum(1 for c in idx.clauses.values() if c.doc_id == doc.doc_id)
         print(f"{doc.title}: {n} clauses")

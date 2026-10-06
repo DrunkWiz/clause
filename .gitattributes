@@ -1,0 +1,8 @@
+# LF everywhere, whatever core.autocrlf says, so checkouts are byte-identical
+# across machines.
+* text=auto eol=lf
+
+# Source documents and built indexes are hashed and compared byte for byte:
+# never convert them.
+data/** -text
+*.pdf binary
