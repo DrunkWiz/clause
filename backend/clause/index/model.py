@@ -42,9 +42,10 @@ class Clause:
     text: str
     lines: tuple[Line, ...] = ()
     kind: str = PARAGRAPH
+    label: str = ""  # human citation, e.g. "45 CFR 147.136(d)(2)(i)"; set for regulations
 
     def to_dict(self) -> dict:
-        return {
+        d = {
             "clause_id": self.clause_id,
             "doc_id": self.doc_id,
             "page": self.page,
@@ -53,6 +54,9 @@ class Clause:
             "lines": [{"bbox": list(l.bbox), "start": l.start, "end": l.end} for l in self.lines],
             "kind": self.kind,
         }
+        if self.label:
+            d["label"] = self.label
+        return d
 
     @classmethod
     def from_dict(cls, d: dict) -> "Clause":
@@ -64,6 +68,7 @@ class Clause:
             text=d["text"],
             lines=tuple(Line(_bbox(l["bbox"]), int(l["start"]), int(l["end"])) for l in d.get("lines", [])),
             kind=d.get("kind", PARAGRAPH),
+            label=d.get("label", ""),
         )
 
 
@@ -72,15 +77,22 @@ class Document:
     doc_id: str
     filename: str
     sha256: str
-    page_sizes: tuple[tuple[float, float], ...]  # (width, height) per page
+    page_sizes: tuple[tuple[float, float], ...]  # (width, height) per page; empty for text sources
+    title: str = ""
+    source_url: str = ""
 
     def to_dict(self) -> dict:
-        return {
+        d = {
             "doc_id": self.doc_id,
             "filename": self.filename,
             "sha256": self.sha256,
             "page_sizes": [list(s) for s in self.page_sizes],
         }
+        if self.title:
+            d["title"] = self.title
+        if self.source_url:
+            d["source_url"] = self.source_url
+        return d
 
     @classmethod
     def from_dict(cls, d: dict) -> "Document":
@@ -89,6 +101,8 @@ class Document:
             filename=d["filename"],
             sha256=d["sha256"],
             page_sizes=tuple((float(w), float(h)) for w, h in d["page_sizes"]),
+            title=d.get("title", ""),
+            source_url=d.get("source_url", ""),
         )
 
 
@@ -111,6 +125,10 @@ class ClauseIndex:
 
     def get(self, clause_id: str) -> Clause | None:
         return self.clauses.get(clause_id)
+
+    def by_label(self, label: str) -> list[Clause]:
+        """Clauses carrying this citation label (regulations only), in order."""
+        return [c for c in self.clauses.values() if c.label == label]
 
     def merge(self, other: "ClauseIndex") -> "ClauseIndex":
         out = ClauseIndex(extractor_version=self.extractor_version)
