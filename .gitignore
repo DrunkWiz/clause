@@ -21,3 +21,7 @@ Thumbs.db
 
 # Local editor/preview config
 .claude/
+
+# Large submission media (uploaded to YouTube/Devpost, not kept in git)
+submission/*.mp4
+submission/voice-samples/

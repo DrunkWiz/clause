@@ -2,6 +2,10 @@
 
 A health insurance assistant that reads your own plan and only tells you what it can point to: your appeal deadline, what your denial notice left out, whether your EOB is right, and a drafted appeal in which every sentence cites the words it rests on. Built for ML Build Challenge 3; the brief is in [docs/BRIEF.md](docs/BRIEF.md).
 
+**Live demo:** https://clause-p7uk.onrender.com (free instance: the first load can take up to a minute while it wakes). The bundled synthetic cases need no upload.
+
+![An appeal sentence and the plan passage it cites, highlighted](docs/screenshots/04-appeal-with-highlighted-source.png)
+
 > Information about your own plan documents, not legal or medical advice. Federal minimums only; your state may give you more. Clause drafts; you decide what to send. It never contacts an insurer or provider.
 
 ## How it stays honest
@@ -60,7 +64,7 @@ cd backend && ../.venv/Scripts/python -m unittest discover -s tests -t .
 
 ## Deploy
 
-`render.yaml` describes one free Render web service: Python 3.11, build `pip install -r backend/requirements.txt`, start `cd backend && python -m clause.server`, with `HOST=0.0.0.0`. Render sets `PORT` and the server reads it. The built frontend in `frontend/dist` is committed, so run `npm run build` in `frontend/` and commit after changing the interface. Set `GEMINI_API_KEY` (and optionally `FEATHERLESS_API_KEY`) in the Render dashboard. The `Dockerfile` builds the same thing as an image for other hosts. Uploaded documents are processed in memory and never stored. The case lives in your browser's `localStorage`.
+The live demo runs on Render. `render.yaml` describes the same free web service: Python 3.11, build `pip install -r backend/requirements.txt`, start `cd backend && python -m clause.server`, with `HOST=0.0.0.0`. Render sets `PORT` and the server reads it. The built frontend in `frontend/dist` is committed, so run `npm run build` in `frontend/` and commit after changing the interface. Set `GEMINI_API_KEY` (and optionally `FEATHERLESS_API_KEY`) in the Render dashboard. The `Dockerfile` builds the same thing as an image for other hosts. Uploaded documents are processed in memory and never stored. The case lives in your browser's `localStorage`.
 
 ## Licence
 

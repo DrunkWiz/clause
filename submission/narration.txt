@@ -1,0 +1,45 @@
+In 2023, insurers on HealthCare.gov denied nearly one in five in-network claims.
+
+Fewer than one in a hundred of those denials were appealed.
+
+Clause is for the person holding that denial letter.
+
+It reads their own plan and their letter, and it only says what it can point to.
+
+Here's a synthetic denial for an MRI, checked against a real Ambetter plan from Texas.
+
+Gemini reads the key facts from the letter, and each one links to the line it came from.
+
+The appeal deadline is computed by code, not by the model, and it cites the federal regulation it comes from.
+
+Clause also checks the letter against everything a federal denial notice must include.
+
+This one never names the plan provision it relies on. That gap is an appeal point in itself.
+
+Then Gemini drafts the appeal. But it never writes free prose.
+
+Every sentence must quote the passage it rests on, and code checks that quote, word for word.
+
+Click any sentence, and the plan page opens with the passage highlighted.
+
+What if a sentence says something the documents don't?
+
+Change the claim amount to one the letter never mentions.
+
+The verifier rejects it. It's greyed out with the reason, and left out of the letter.
+
+The same pipeline checks an explanation of benefits.
+
+This out-of-network emergency visit was charged out-of-network cost-sharing. Under the No Surprises Act, it shouldn't be, so Clause flags it.
+
+Under the hood, every paragraph of the plan, the letter and the federal regulations gets an address.
+
+Gemini Flash extracts and drafts, with a fallback chain behind it.
+
+A grounding verifier checks every citation, and four rule tables handle deadlines, notice gaps, reason codes and surprise billing, in plain code.
+
+Two hundred and twenty tests run with no network and no API key.
+
+The plans and regulations are real. The denial letters and benefit statements are synthetic, and labelled that way.
+
+Clause never contacts your insurer. It drafts. You decide what to send.

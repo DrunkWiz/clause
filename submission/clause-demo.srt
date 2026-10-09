@@ -1,0 +1,91 @@
+1
+00:00:00,810 --> 00:00:07,569
+In 2023, insurers on HealthCare.gov denied nearly one in five in-network claims.
+
+2
+00:00:07,569 --> 00:00:11,631
+Fewer than one in a hundred of those denials were appealed.
+
+3
+00:00:11,631 --> 00:00:15,307
+Clause is for the person holding that denial letter.
+
+4
+00:00:15,307 --> 00:00:20,187
+It reads their own plan and their letter, and it only says what it can point to.
+
+5
+00:00:20,187 --> 00:00:26,230
+Here's a synthetic denial for an MRI, checked against a real Ambetter plan from Texas.
+
+6
+00:00:26,230 --> 00:00:31,781
+Gemini reads the key facts from the letter, and each one links to the line it came from.
+
+7
+00:00:31,781 --> 00:00:38,695
+The appeal deadline is computed by code, not by the model, and it cites the federal regulation it comes from.
+
+8
+00:00:38,695 --> 00:00:44,455
+Clause also checks the letter against everything a federal denial notice must include.
+
+9
+00:00:44,455 --> 00:00:50,394
+This one never names the plan provision it relies on. That gap is an appeal point in itself.
+
+10
+00:00:50,394 --> 00:00:54,737
+Then Gemini drafts the appeal. But it never writes free prose.
+
+11
+00:00:54,737 --> 00:01:00,438
+Every sentence must quote the passage it rests on, and code checks that quote, word for word.
+
+12
+00:01:00,438 --> 00:01:05,211
+Click any sentence, and the plan page opens with the passage highlighted.
+
+13
+00:01:05,211 --> 00:01:08,772
+What if a sentence says something the documents don't?
+
+14
+00:01:08,772 --> 00:01:12,654
+Change the claim amount to one the letter never mentions.
+
+15
+00:01:12,654 --> 00:01:17,647
+The verifier rejects it. It's greyed out with the reason, and left out of the letter.
+
+16
+00:01:17,647 --> 00:01:21,897
+The same pipeline checks an Explanation of Benefits (EOB).
+
+17
+00:01:22,215 --> 00:01:30,767
+This out-of-network emergency visit was charged out-of-network cost-sharing. Under the No Surprises Act, it shouldn't be, so Clause flags it.
+
+18
+00:01:30,767 --> 00:01:36,636
+Under the hood, every paragraph of the plan, the letter and the federal regulations gets an address.
+
+19
+00:01:36,636 --> 00:01:41,423
+Gemini Flash extracts and drafts, with a fallback chain behind it.
+
+20
+00:01:41,423 --> 00:01:50,586
+A grounding verifier checks every citation, and four rule tables handle deadlines, notice gaps, reason codes and surprise billing, in plain code.
+
+21
+00:01:50,586 --> 00:01:55,519
+220 tests run with no network and no API key.
+
+22
+00:01:55,519 --> 00:02:02,746
+The plans and regulations are real. The denial letters and EOBs are synthetic, and labelled that way.
+
+23
+00:02:02,746 --> 00:02:08,040
+Clause never contacts your insurer. It drafts. You decide what to send.
