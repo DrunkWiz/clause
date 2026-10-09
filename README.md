@@ -60,7 +60,7 @@ cd backend && ../.venv/Scripts/python -m unittest discover -s tests -t .
 
 ## Deploy
 
-`render.yaml` describes one Docker web service. Set `GEMINI_API_KEY` and `FEATHERLESS_API_KEY` in the Render dashboard. Uploaded documents are processed in memory and never stored. The case lives in your browser's `localStorage`.
+`render.yaml` describes one free Render web service: Python 3.11, build `pip install -r backend/requirements.txt`, start `cd backend && python -m clause.server`, with `HOST=0.0.0.0`. Render sets `PORT` and the server reads it. The built frontend in `frontend/dist` is committed, so run `npm run build` in `frontend/` and commit after changing the interface. Set `GEMINI_API_KEY` (and optionally `FEATHERLESS_API_KEY`) in the Render dashboard. The `Dockerfile` builds the same thing as an image for other hosts. Uploaded documents are processed in memory and never stored. The case lives in your browser's `localStorage`.
 
 ## Licence
 

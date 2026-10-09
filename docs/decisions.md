@@ -51,3 +51,8 @@ Short log of choices that shape the code. Newest last.
 - **Showing rejection honestly**: on real output the draft had 0 rejected sentences out of 27 across three letters, so the demo doesn't rely on the model failing. Instead, drafted sentences are editable and re-verified live. Changing an amount to one the quote doesn't contain greys the sentence out with the reason.
 - **Absence statements** ("the notice does not include …") have nothing to quote. They are shown as "checked by rule" findings, not as supported claims.
 - **Deploy**: a Docker image (Node build stage, then Python), described in `render.yaml`. Keys are set as Render environment variables.
+
+## 2026-10-10 — Deploy
+
+- **Render, as a plain Python service, not Docker.** Docker could not be tested locally, and the stdlib server needs no WSGI server such as gunicorn. The built frontend is committed (`frontend/dist`) so the host needs no Node step. Render's free instance sleeps when idle, so the first visit can take up to a minute.
+- **Live-run feedback**: a live model run takes about a minute, so the interface says so and shows the seconds elapsed.

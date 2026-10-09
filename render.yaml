@@ -1,12 +1,20 @@
-# Render Blueprint: one Docker web service. Set the keys in the Render
-# dashboard when prompted; they are never committed.
+# Render Blueprint: one free Python web service. The built frontend
+# (frontend/dist) is committed, so the host needs no Node build step.
+# Render sets PORT; the server reads it. Set the keys in the Render dashboard
+# when prompted; they are never committed.
 services:
   - type: web
     name: clause
-    runtime: docker
+    runtime: python
     plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && python -m clause.server
     healthCheckPath: /api/health
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: HOST
+        value: 0.0.0.0
       - key: GEMINI_API_KEY
         sync: false
       - key: GEMINI_MODEL

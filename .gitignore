@@ -11,7 +11,7 @@ venv/
 
 # Node
 node_modules/
-dist/
+# frontend/dist is committed: the host serves it without a Node build.
 
 # Editors / OS
 .vscode/

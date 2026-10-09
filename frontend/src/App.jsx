@@ -22,7 +22,7 @@ export default function App() {
       requestAnimationFrame(() => document.querySelector(".right")?.scrollIntoView({ behavior: "smooth", block: "start" }));
     }
   };
-  const [busy, setBusy] = useState("");
+  const [busy, setBusy] = useState(null); // {title, live, started}
   const [error, setError] = useState("");
   const [uploads, setUploads] = useState({}); // doc_id -> blob URL, this session only
   const [uploadIndex, setUploadIndex] = useState(null);
@@ -32,9 +32,9 @@ export default function App() {
   }, []);
   useEffect(() => save(current?.meta?.upload ? null : current), [current]);
 
-  async function run(meta, call) {
+  async function run(meta, call, live = false) {
     setError("");
-    setBusy(meta.title);
+    setBusy({ title: meta.title, live, started: Date.now() });
     setSource(null);
     try {
       const result = await call();
@@ -43,12 +43,12 @@ export default function App() {
     } catch (e) {
       setError(e.message);
     } finally {
-      setBusy("");
+      setBusy(null);
     }
   }
 
   const openDemo = (c, overrides, live = false) =>
-    run({ id: c.id, kind: c.kind, title: c.title, docs: [c.id, ...c.plan_docs] }, () => postJSON(`/api/demo/${c.id}`, { overrides, live }));
+    run({ id: c.id, kind: c.kind, title: c.title, docs: [c.id, ...c.plan_docs] }, () => postJSON(`/api/demo/${c.id}`, { overrides, live }), live);
   const demoOf = (meta) => ({ id: meta.id, kind: meta.kind, title: meta.title, plan_docs: meta.docs.slice(1) });
 
   async function openUpload({ file, planId, kind }) {
@@ -59,14 +59,14 @@ export default function App() {
       setUploads({ [docId]: URL.createObjectURL(file) });
       setUploadIndex({ index, planDocs: plan.docs, kind });
       return postJSON("/api/case", { kind, document: index, plan_docs: plan.docs });
-    });
+    }, true);
   }
 
   function override(vals) {
     const meta = current.meta;
     const overrides = Object.fromEntries(Object.entries(vals).filter(([, v]) => v));
     if (meta.upload && uploadIndex) {
-      run(meta, () => postJSON("/api/case", { kind: uploadIndex.kind, document: uploadIndex.index, plan_docs: uploadIndex.planDocs, overrides }));
+      run(meta, () => postJSON("/api/case", { kind: uploadIndex.kind, document: uploadIndex.index, plan_docs: uploadIndex.planDocs, overrides }), true);
     } else {
       openDemo(demoOf(meta), overrides);
     }
@@ -110,11 +110,7 @@ export default function App() {
           {error}
         </p>
       )}
-      {busy && (
-        <div className="busy" role="status">
-          <span className="spinner" aria-hidden /> Reading the documents and checking every citation…
-        </div>
-      )}
+      {busy && <Busy busy={busy} />}
 
       {!result ? (
         <Home cases={cases} onOpen={openDemo} onUpload={openUpload} disabled={!!busy} />
@@ -249,6 +245,27 @@ function Home({ cases, onOpen, onUpload, disabled }) {
         </ol>
       </section>
     </main>
+  );
+}
+
+// A live model run takes about a minute, so say so and show that it is still going.
+function Busy({ busy }) {
+  const [now, setNow] = useState(Date.now());
+  useEffect(() => {
+    const t = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, []);
+  const secs = Math.max(0, Math.round((now - busy.started) / 1000));
+  return (
+    <div className="busy" role="status">
+      <span className="spinner" aria-hidden />
+      <span>
+        {busy.live
+          ? "Asking the live model to read your documents, then checking every citation. This usually takes about a minute."
+          : "Reading the documents and checking every citation…"}
+        {secs >= 3 && <span className="elapsed"> {secs}s</span>}
+      </span>
+    </div>
   );
 }
 

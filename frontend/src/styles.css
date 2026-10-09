@@ -99,6 +99,7 @@ p { margin: 0 0 0.6em; }
 button.chip { cursor: pointer; }
 
 .error { background: var(--bad-soft); color: var(--bad); padding: 10px 14px; border-radius: 8px; }
+.elapsed { font-variant-numeric: tabular-nums; opacity: 0.75; }
 .busy { display: flex; gap: 10px; align-items: center; background: var(--accent-soft); color: var(--accent); padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; }
 .spinner { width: 16px; height: 16px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin 0.8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
