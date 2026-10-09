@@ -19,7 +19,7 @@ Short log of choices that shape the code. Newest last.
 
 - **Hidden text**: characters under 3pt and non-upright characters are dropped. The Kaiser SBC header carries 1pt text.
 - **Columns**: a vertical gutter in the middle 30–70% of the page, crossed by at most 2% of words, with at least 15% of words on each side. Lines that cross it, such as running headers, are kept whole and placed before or after the columns.
-- **Paragraph breaks**: a vertical gap above 0.6× line height, a font size change of more than 1pt, a bullet, a numbered item ("3.", "a)", "(iv)"), or a dot-leader line (tables of contents).
+- **Paragraph breaks**: a vertical gap above 0.6Ã— line height, a font size change of more than 1pt, a bullet, a numbered item ("3.", "a)", "(iv)"), or a dot-leader line (tables of contents).
 - **Tables**: one clause per row, cells joined with " | ". Tables nested in another table's cell are dropped, because they repeat its text. Sub-rows are folded back into their row when they sit inside its band, or when they are touching one-line rows that don't start a new sentence. Each sub-line stays its own highlight box.
 - **No text lost**: words are left out of paragraph text only when a captured table cell contains them, not merely because they sit inside a table's box.
 - **Number check widened**: hours now count alongside days, and spelled-out numbers (one to twenty, thirty, forty-five, sixty, ninety) count too. Plan documents say "five business days" and "72 hours".
@@ -39,3 +39,15 @@ Short log of choices that shape the code. Newest last.
 - **Reason codes**: code numbers are from X12. X12's descriptions are copyrighted, so the meanings are our own wording and are shown as explanation, not cited fact. The CO/PR meaning is cited to CMS MLN905367, which is Medicare guidance; for private plans the interface says "ask".
 - **Money in rule claims** must come from a quoted line of the person's EOB or bill. A rule never states a computed sum, so the number check still applies, and a wrongly extracted amount is rejected.
 - **No Surprises**: the rule decides whether a protection applies and flags out-of-network cost-sharing or balance billing on protected care. It does not compute allowed amounts, because the qualifying payment amount is not public. Ground ambulance is outside the federal rules and is shown as a note.
+
+## 2026-10-06 — Drafter and interface
+
+- **Synthetic documents** come from a plain-Python PDF writer (no second dependency) and go through the same extractor as real PDFs. They name the real plan they relate to, but are not written as if from the insurer: no letterhead, and every page says "not issued by any insurer". Ground truth records where each element landed, and the tests check that each letter's planned gaps are exactly what the notice rule finds.
+- **Model chain**: Gemini Flash (`gemini-3.5-flash`), then Featherless, then recorded responses. Overload and rate-limit errors (429/5xx) get two short retries before falling through.
+- **Citation ids**: the model sometimes splits `doc#p26.6` into doc plus `p26.6`. The pipeline joins exactly that shape before verifying; the verifier itself is unchanged and stays strict. The prompt now shows the full-id format.
+- **Retrieval**: BM25 (stdlib) over plan clauses. There are separate queries for the case, the denial basis, the appeal process and the plan provision the letter names, giving the union of the top 14 each, capped at 40 clauses.
+- **Dates and amounts are read by code** from verified quotes, never taken from the model's value.
+- **Demo speed**: a live run of both model calls took about 70 seconds on Gemini, so bundled demo cases answer from saved responses first, with "Run again with the live model" in the interface. It always shows which provider answered.
+- **Showing rejection honestly**: on real output the draft had 0 rejected sentences out of 27 across three letters, so the demo doesn't rely on the model failing. Instead, drafted sentences are editable and re-verified live. Changing an amount to one the quote doesn't contain greys the sentence out with the reason.
+- **Absence statements** ("the notice does not include …") have nothing to quote. They are shown as "checked by rule" findings, not as supported claims.
+- **Deploy**: a Docker image (Node build stage, then Python), described in `render.yaml`. Keys are set as Render environment variables.

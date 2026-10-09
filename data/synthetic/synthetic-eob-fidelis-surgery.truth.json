@@ -1,0 +1,70 @@
+{
+ "doc_id": "synthetic-eob-fidelis-surgery",
+ "kind": "eob",
+ "title": "EOB: out-of-network anesthesiologist at an in-network surgery center; amount owed does not match",
+ "plan_docs": [
+  "fidelis-ny-silver-sbc-2026",
+  "fidelis-ny-silver-contract-2026"
+ ],
+ "synthetic": true,
+ "setting": "nonemergency_at_in_network_facility",
+ "provider_in_network": false,
+ "facility_in_network": true,
+ "specialty": "Anesthesiology",
+ "lines": [
+  {
+   "tag": "line_surgeon",
+   "group": "PR",
+   "code": "3",
+   "amount": "50.00"
+  },
+  {
+   "tag": "line_surgeon_contract",
+   "group": "CO",
+   "code": "45",
+   "amount": "1900.00"
+  },
+  {
+   "tag": "line_anesthesia",
+   "group": "OA",
+   "code": "242",
+   "amount": "900.00"
+  }
+ ],
+ "patient_owes": {
+  "tag": "patient_owes",
+  "amount": "950.00"
+ },
+ "tags": {
+  "setting": {
+   "clause_id": "synthetic-eob-fidelis-surgery#p1.10",
+   "quote": "Place of service: Riverside Surgery Center (in network).",
+   "text": "Place of service: Riverside Surgery Center (in network). Anesthesia by Metro Anesthesia Associates (out of network)."
+  },
+  "line_surgeon": {
+   "clause_id": "synthetic-eob-fidelis-surgery#p1.12",
+   "quote": "Knee arthroscopy, surgeon | Dr. Priya Lang, Riverside Orthopedics | $4,000.00 | $2,100.00 | $2,050.00 | PR-3 | $50.00",
+   "text": "Knee arthroscopy, surgeon | Dr. Priya Lang, Riverside Orthopedics | $4,000.00 | $2,100.00 | $2,050.00 | PR-3 | $50.00"
+  },
+  "line_surgeon_contract": {
+   "clause_id": "synthetic-eob-fidelis-surgery#p1.13",
+   "quote": "Knee arthroscopy, surgeon | Dr. Priya Lang, Riverside Orthopedics | CO-45 | $1,900.00",
+   "text": "Knee arthroscopy, surgeon | Dr. Priya Lang, Riverside Orthopedics | CO-45 | $1,900.00"
+  },
+  "line_anesthesia": {
+   "clause_id": "synthetic-eob-fidelis-surgery#p1.14",
+   "quote": "Anesthesia | Metro Anesthesia Associates | $1,800.00 | $900.00 | $900.00 | OA-242 | $900.00",
+   "text": "Anesthesia | Metro Anesthesia Associates | $1,800.00 | $900.00 | $900.00 | OA-242 | $900.00"
+  },
+  "patient_owes": {
+   "clause_id": "synthetic-eob-fidelis-surgery#p1.15",
+   "quote": "Total you may owe: $950.00",
+   "text": "Total you may owe: $950.00"
+  },
+  "balance_bill": {
+   "clause_id": "synthetic-eob-fidelis-surgery#p1.16",
+   "quote": "The out-of-network anesthesia provider may bill you for",
+   "text": "The out-of-network anesthesia provider may bill you for the amount above the allowed amount: $900.00."
+  }
+ }
+}

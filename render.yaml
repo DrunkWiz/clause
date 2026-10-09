@@ -1,0 +1,17 @@
+# Render Blueprint: one Docker web service. Set the keys in the Render
+# dashboard when prompted; they are never committed.
+services:
+  - type: web
+    name: clause
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash
+      - key: FEATHERLESS_API_KEY
+        sync: false
+      - key: FEATHERLESS_MODEL
+        value: Qwen/Qwen2.5-72B-Instruct

@@ -211,4 +211,7 @@ def _highlights(clause: Clause, spans: list[tuple[int, int]]) -> tuple[Highlight
 
 def _describe(fact: tuple[str, str]) -> str:
     kind, num = fact
-    return {"money": f"${num}", "percent": f"{num}%", "days": f"{num} days", "hours": f"{num} hours"}.get(kind, num)
+    if kind == "money":
+        whole, _, cents = num.partition(".")
+        return f"${int(whole):,}" + (f".{cents.ljust(2, '0')}" if cents else "")
+    return {"percent": f"{num}%", "days": f"{num} days", "hours": f"{num} hours"}.get(kind, num)

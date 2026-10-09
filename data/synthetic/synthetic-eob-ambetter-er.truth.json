@@ -1,0 +1,63 @@
+{
+ "doc_id": "synthetic-eob-ambetter-er",
+ "kind": "eob",
+ "title": "EOB: out-of-network emergency room, out-of-network cost-sharing applied",
+ "plan_docs": [
+  "ambetter-tx-silver-sbc-2026",
+  "ambetter-tx-eoc-2026"
+ ],
+ "synthetic": true,
+ "setting": "emergency",
+ "provider_in_network": false,
+ "lines": [
+  {
+   "tag": "line_er_facility",
+   "group": "PR",
+   "code": "2",
+   "amount": "800.00"
+  },
+  {
+   "tag": "line_er_physician",
+   "group": "PR",
+   "code": "2",
+   "amount": "300.00"
+  }
+ ],
+ "patient_owes": {
+  "tag": "patient_owes",
+  "amount": "1100.00"
+ },
+ "plan_in_network_terms": "ambetter-tx-silver-sbc-2026#p3.9",
+ "tags": {
+  "setting": {
+   "clause_id": "synthetic-eob-ambetter-er#p1.10",
+   "quote": "Place of service: Hospital emergency department. Network status:",
+   "text": "Place of service: Hospital emergency department. Network status: out of network."
+  },
+  "line_er_facility": {
+   "clause_id": "synthetic-eob-ambetter-er#p1.12",
+   "quote": "Emergency room visit, level 4 | Gulf Coast General Hospital | $3,200.00 | $1,600.00 | $800.00 | PR-2 | $800.00",
+   "text": "Emergency room visit, level 4 | Gulf Coast General Hospital | $3,200.00 | $1,600.00 | $800.00 | PR-2 | $800.00"
+  },
+  "line_er_physician": {
+   "clause_id": "synthetic-eob-ambetter-er#p1.13",
+   "quote": "Emergency physician services | Bayside Emergency Physicians | $1,150.00 | $600.00 | $300.00 | PR-2 | $300.00",
+   "text": "Emergency physician services | Bayside Emergency Physicians | $1,150.00 | $600.00 | $300.00 | PR-2 | $300.00"
+  },
+  "out_of_network_cost_sharing": {
+   "clause_id": "synthetic-eob-ambetter-er#p1.14",
+   "quote": "Cost-sharing applied: out-of-network emergency room coinsurance of 50%",
+   "text": "Cost-sharing applied: out-of-network emergency room coinsurance of 50% of the allowed amount."
+  },
+  "patient_owes": {
+   "clause_id": "synthetic-eob-ambetter-er#p1.15",
+   "quote": "Total you may owe: $1,100.00",
+   "text": "Total you may owe: $1,100.00"
+  },
+  "balance_bill": {
+   "clause_id": "synthetic-eob-ambetter-er#p1.16",
+   "quote": "Out-of-network providers may also bill you for the",
+   "text": "Out-of-network providers may also bill you for the difference between their charges and the allowed amount, a total of $2,150.00 for this claim."
+  }
+ }
+}

@@ -1,0 +1,73 @@
+{
+ "doc_id": "synthetic-denial-ambetter-tx",
+ "kind": "denial",
+ "title": "Denial: lumbar MRI, medical necessity (plan provision not named)",
+ "plan_docs": [
+  "ambetter-tx-silver-sbc-2026",
+  "ambetter-tx-eoc-2026"
+ ],
+ "synthetic": true,
+ "notice_date": "2026-09-21",
+ "care": "post_service",
+ "basis": "medical_necessity",
+ "gaps": [
+  "plan_provision"
+ ],
+ "tags": {
+  "notice_date": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.2",
+   "quote": "September 21, 2026",
+   "text": "September 21, 2026"
+  },
+  "date_of_service": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.10",
+   "quote": "Date of service: September 2, 2026",
+   "text": "Date of service: September 2, 2026"
+  },
+  "provider_name": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.11",
+   "quote": "Provider: Lakeside Imaging Center",
+   "text": "Provider: Lakeside Imaging Center"
+  },
+  "claim_amount": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.12",
+   "quote": "Claim amount: $1,840.00",
+   "text": "Claim amount: $1,840.00"
+  },
+  "reason": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.13",
+   "quote": "We have denied payment for the MRI of",
+   "text": "We have denied payment for the MRI of the lumbar spine (CPT 72148) because the service was not medically necessary. Our reviewer found that your records did not show six weeks of conservative treatment, such as physical therapy, before imaging was ordered."
+  },
+  "denial_code": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.14",
+   "quote": "Denial code CO-50: the service is not covered",
+   "text": "Denial code CO-50: the service is not covered because it was not found to be medically necessary."
+  },
+  "clinical_explanation": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.15",
+   "quote": "You may ask for a copy of the",
+   "text": "You may ask for a copy of the clinical criteria and the reviewer's clinical rationale used in this decision, free of charge."
+  },
+  "codes_on_request": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.16",
+   "quote": "You may request the diagnosis code and the",
+   "text": "You may request the diagnosis code and the treatment code for this claim, and what each code means, at no cost."
+  },
+  "review_procedures": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.18",
+   "quote": "You or someone you name to act for",
+   "text": "You or someone you name to act for you may file an internal appeal within 180 days after you receive this notice. We will decide a post-service appeal within 30 calendar days after we receive it."
+  },
+  "appeal_and_external_review": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.19",
+   "quote": "To start an appeal, send a written request",
+   "text": "To start an appeal, send a written request and any records that support it to Member Appeals Unit, PO Box 0000, Austin, TX 78700. If we uphold this denial, you may ask for an external review by an Independent Review Organization that is not part of your plan."
+  },
+  "consumer_assistance": {
+   "clause_id": "synthetic-denial-ambetter-tx#p1.20",
+   "quote": "For free help with your appeal, you may",
+   "text": "For free help with your appeal, you may contact the consumer help line of the Texas Department of Insurance."
+  }
+ }
+}

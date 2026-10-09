@@ -1,0 +1,69 @@
+{
+ "doc_id": "synthetic-denial-fidelis-ny",
+ "kind": "denial",
+ "title": "Urgent denial: proton beam therapy, experimental (expedited process missing)",
+ "plan_docs": [
+  "fidelis-ny-silver-sbc-2026",
+  "fidelis-ny-silver-contract-2026"
+ ],
+ "synthetic": true,
+ "notice_date": "2026-10-02",
+ "care": "urgent",
+ "basis": "experimental",
+ "gaps": [
+  "clinical_explanation",
+  "expedited_process"
+ ],
+ "tags": {
+  "notice_date": {
+   "clause_id": "synthetic-denial-fidelis-ny#p1.2",
+   "quote": "October 2, 2026",
+   "text": "October 2, 2026"
+  },
+  "date_of_service": {
+   "clause_id": "synthetic-denial-fidelis-ny#p1.10",
+   "quote": "Requested date of service: October 12, 2026",
+   "text": "Requested date of service: October 12, 2026"
+  },
+  "provider_name": {
+   "clause_id": "synthetic-denial-fidelis-ny#p1.11",
+   "quote": "Provider: Hudson Valley Proton Center",
+   "text": "Provider: Hudson Valley Proton Center"
+  },
+  "reason": {
+   "clause_id": "synthetic-denial-fidelis-ny#p1.12",
+   "quote": "We have denied the urgent request for proton",
+   "text": "We have denied the urgent request for proton beam therapy because we consider it experimental or investigational for your condition."
+  },
+  "denial_code": {
+   "clause_id": "synthetic-denial-fidelis-ny#p1.13",
+   "quote": "Denial code UM-EXP-02: experimental or investigational treatment.",
+   "text": "Denial code UM-EXP-02: experimental or investigational treatment."
+  },
+  "plan_provision": {
+   "clause_id": "synthetic-denial-fidelis-ny#p1.14",
+   "quote": "This decision is based on the exclusion for",
+   "text": "This decision is based on the exclusion for experimental or investigational treatment in the Exclusions and Limitations section of your Contract."
+  },
+  "codes_on_request": {
+   "clause_id": "synthetic-denial-fidelis-ny#p1.15",
+   "quote": "You may request the diagnosis code and the",
+   "text": "You may request the diagnosis code and the treatment code for this request, and what each code means, at no cost."
+  },
+  "review_procedures": {
+   "clause_id": "synthetic-denial-fidelis-ny#p1.17",
+   "quote": "You may file an internal appeal within 180",
+   "text": "You may file an internal appeal within 180 days after you receive this notice. We will decide a pre-service appeal within 30 days after we receive it."
+  },
+  "appeal_and_external_review": {
+   "clause_id": "synthetic-denial-fidelis-ny#p1.18",
+   "quote": "To start an appeal, write to Utilization Review",
+   "text": "To start an appeal, write to Utilization Review Appeals, PO Box 0000, Albany, NY 12200. If we uphold this denial, you may ask for an external appeal by an independent reviewer."
+  },
+  "consumer_assistance": {
+   "clause_id": "synthetic-denial-fidelis-ny#p1.19",
+   "quote": "For free help, you may contact New York's",
+   "text": "For free help, you may contact New York's health insurance consumer assistance program."
+  }
+ }
+}
