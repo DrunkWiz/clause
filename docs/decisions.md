@@ -56,3 +56,12 @@ Short log of choices that shape the code. Newest last.
 
 - **Render, as a plain Python service, not Docker.** Docker could not be tested locally, and the stdlib server needs no WSGI server such as gunicorn. The built frontend is committed (`frontend/dist`) so the host needs no Node step. Render's free instance sleeps when idle, so the first visit can take up to a minute.
 - **Live-run feedback**: a live model run takes about a minute, so the interface says so and shows the seconds elapsed.
+
+## 2026-11-03 — Interface overhaul
+
+- **One typeface (Manrope, bundled, not loaded from Google), a fixed type and spacing scale, Phosphor icons.** The serif letter face went; the letter still reads as paper through its own surface.
+- **A case starts with a summary**: deadline, notice gaps and verified sentences, each a link to its section. The notice check leads with what is missing; found and not-applicable elements fold away, so the letter is no longer 15 rows down.
+- **Citations show once per paragraph**, and a sentence's citations, tag and edit button wrap as one group.
+- **On phones the source opens as a sheet over the case** (Escape or the scrim closes it), instead of far below it.
+- **Loading shows a skeleton of the case** with the live-run timer, not a spinner.
+- **Fixed**: a "checked by rule" sentence with no citation was highlighted whenever no source was open.

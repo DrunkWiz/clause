@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import * as pdfjs from "pdfjs-dist";
 import workerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+import { ArrowSquareOut, CaretLeft, CaretRight, CursorClick, FileText, Scales, X } from "@phosphor-icons/react";
 import { getJSON } from "./api.js";
 
 pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
@@ -30,12 +31,23 @@ export function pdfUrlFor(docId, documents, uploads) {
 }
 
 /** The right-hand pane: the cited page with its highlight, or regulation text. */
-export default function SourceViewer({ source, documents, clauses, uploads }) {
+export default function SourceViewer({ source, documents, clauses, uploads, onClose }) {
   if (!source) {
     return (
       <div className="viewer-empty">
-        <p className="eyebrow">Source</p>
-        <p>Click any sentence or citation to see the exact passage it rests on.</p>
+        <span className="empty-icon" aria-hidden>
+          <CursorClick size={28} />
+        </span>
+        <h2>Every sentence has a source</h2>
+        <p className="muted">Click a sentence, a citation or “From the letter” to open the exact passage it rests on, highlighted on the page.</p>
+        <ul className="empty-legend">
+          <li>
+            <FileText size={16} aria-hidden /> Your letter and plan open as the original PDF page
+          </li>
+          <li>
+            <Scales size={16} aria-hidden /> Federal rules open at the cited paragraph
+          </li>
+        </ul>
       </div>
     );
   }
@@ -44,7 +56,14 @@ export default function SourceViewer({ source, documents, clauses, uploads }) {
   return (
     <div className="viewer">
       <header className="viewer-head">
-        <p className="eyebrow">{KIND[doc?.kind] || "Document"}</p>
+        <div className="row between">
+          <p className="eyebrow">{KIND[doc?.kind] || "Document"}</p>
+          {onClose && (
+            <button className="icon close" onClick={onClose} aria-label="Close the source">
+              <X size={20} weight="bold" aria-hidden />
+            </button>
+          )}
+        </div>
         <h2>{source.label || clause?.label || doc?.title || source.doc}</h2>
         {!doc?.regulation && source.page && (
           <p className="muted small">
@@ -131,13 +150,13 @@ function PdfPage({ source, url, pageCount }) {
       {pageCount > 1 && (
         <div className="pager">
           <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page <= 1} aria-label="Previous page">
-            ‹
+            <CaretLeft size={16} weight="bold" aria-hidden />
           </button>
           <span>
             Page {page} of {pageCount}
           </span>
           <button onClick={() => setPage((p) => Math.min(pageCount, p + 1))} disabled={page >= pageCount} aria-label="Next page">
-            ›
+            <CaretRight size={16} weight="bold" aria-hidden />
           </button>
           {source.page && page !== source.page && (
             <button className="link" onClick={() => setPage(source.page)}>
@@ -187,7 +206,7 @@ function RegulationText({ source, doc }) {
       {doc.source_url && (
         <p className="small pad-x">
           <a href={doc.source_url.includes("ecfr.gov/api") ? `https://www.ecfr.gov/current/title-${doc.title.split(" ")[0]}/section-${doc.title.split(" ").pop()}` : doc.source_url} target="_blank" rel="noreferrer">
-            Read {doc.title} at the source ↗
+            Read {doc.title} at the source <ArrowSquareOut size={14} aria-hidden />
           </a>
         </p>
       )}

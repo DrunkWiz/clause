@@ -58,3 +58,34 @@ export function docLabel(doc, documents) {
   const d = documents?.[doc];
   return d?.title || d?.filename || doc;
 }
+
+// "Denial: lumbar MRI, medical necessity (plan provision not named)" ->
+// {kind: "Denial", title: "Lumbar MRI, medical necessity", hint: "plan provision not named"}
+export function caseParts(full = "") {
+  const m = full.match(/^([^:]+):\s*(.*?)(?:\s*\(([^)]*)\))?$/);
+  if (!m) return { kind: "", title: full, hint: "" };
+  const title = m[2].charAt(0).toUpperCase() + m[2].slice(1);
+  return { kind: m[1], title, hint: m[3] || "" };
+}
+
+export const PLAN_NAMES = {
+  "ambetter-tx": "Ambetter Silver 5000, Texas",
+  "kaiser-ga": "Kaiser Permanente Gold HMO, Georgia",
+  "fidelis-ny": "Ambetter from Fidelis Care Silver, New York",
+};
+
+export function planName(planDocs = []) {
+  const id = (planDocs[0] || "").split("-").slice(0, 2).join("-");
+  return PLAN_NAMES[id] || id;
+}
+
+// Rules sometimes cite the same paragraph twice for one sentence; show it once.
+export function uniqueCitations(citations = []) {
+  const seen = new Set();
+  return citations.filter((c) => {
+    const k = c.label || c.clause_id;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
